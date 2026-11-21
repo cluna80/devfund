@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DevFund Roadmap</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#0d0f14;--bg2:#13161d;--bg3:#1a1e28;--border:#242836;--fg:#e8eaf0;--fg2:#8b90a0;--fg3:#555b6e;--accent:#4f8eff;--accent2:#7c5cfc;--green:#3ecf8e;--amber:#f59e0b;--rail:linear-gradient(180deg,#4f8eff 0%,#7c5cfc 50%,#3ecf8e 100%);color-scheme:dark }
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f8fc;--bg2:#ffffff;--bg3:#eef0f7;--border:#dde0eb;--fg:#0d0f14;--fg2:#4a4f63;--fg3:#9298ad;color-scheme:light}}
+  :root[data-theme="light"]{--bg:#f7f8fc;--bg2:#ffffff;--bg3:#eef0f7;--border:#dde0eb;--fg:#0d0f14;--fg2:#4a4f63;--fg3:#9298ad;color-scheme:light}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px}
+  .container{max-width:780px;margin:0 auto}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;color:var(--fg);line-height:1.1;text-wrap:balance;margin-bottom:16px}
+  h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .header-desc{font-size:16px;color:var(--fg2);max-width:540px;line-height:1.65}
+  .header{margin-bottom:56px}
+  .stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;padding-top:32px;border-top:1px solid var(--border)}
+  .stat{display:flex;flex-direction:column;gap:2px}
+  .stat-val{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
+  .stat-label{font-size:12px;color:var(--fg3);text-transform:uppercase;letter-spacing:.08em}
+  .timeline{position:relative;display:flex;flex-direction:column}
+  .timeline::before{content:'';position:absolute;left:20px;top:8px;bottom:8px;width:2px;background:var(--rail);border-radius:2px}
+  .phase{display:grid;grid-template-columns:44px 1fr;gap:0 20px;padding-bottom:40px}
+  .phase:last-child{padding-bottom:0}
+  .phase-dot{position:relative;display:flex;justify-content:center;padding-top:2px;z-index:1}
+  .dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--bg);flex-shrink:0}
+  .dot-blue{background:var(--accent);box-shadow:0 0 10px rgba(79,142,255,.5)}
+  .dot-purple{background:var(--accent2);box-shadow:0 0 10px rgba(124,92,252,.5)}
+  .dot-green{background:var(--green);box-shadow:0 0 10px rgba(62,207,142,.4)}
+  .dot-amber{background:var(--amber);box-shadow:0 0 10px rgba(245,158,11,.4)}
+  .phase-body{min-width:0}
+  .phase-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .phase-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--fg3);margin-bottom:4px}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;color:var(--fg);text-wrap:balance}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+  .badge-blue{background:rgba(79,142,255,.12);color:var(--accent);border:1px solid rgba(79,142,255,.25)}
+  .badge-purple{background:rgba(124,92,252,.12);color:var(--accent2);border:1px solid rgba(124,92,252,.25)}
+  .badge-green{background:rgba(62,207,142,.1);color:var(--green);border:1px solid rgba(62,207,142,.2)}
+  .badge-amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+  .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px}
+  .phase-desc{font-size:14px;color:var(--fg2);margin-bottom:16px;line-height:1.6}
+  .deliverables{display:flex;flex-direction:column;gap:8px}
+  .deliverable{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--fg)}
+  .deliverable-icon{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--fg3);padding-top:2px;flex-shrink:0;width:20px}
+  .sub-section{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+  .sub-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--fg3);margin-bottom:10px}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:12px;padding:3px 10px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--fg2);font-family:'JetBrains Mono',monospace}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--fg);margin-bottom:20px;padding-top:48px;border-top:1px solid var(--border);margin-top:48px;text-wrap:balance}
+  .diff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .diff-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px}
+  .diff-icon{font-size:20px;margin-bottom:10px}
+  .diff-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--fg);margin-bottom:6px}
+  .diff-desc{font-size:13px;color:var(--fg2);line-height:1.55}
+  .mvp-note{background:rgba(79,142,255,.06);border:1px solid rgba(79,142,255,.2);border-radius:10px;padding:20px 24px;margin-top:48px}
+  .mvp-note-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px}
+  .mvp-note p{font-size:14px;color:var(--fg2);line-height:1.6}
+  @media(max-width:500px){.timeline::before{left:16px}.phase{grid-template-columns:36px 1fr;gap:0 12px}.diff-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="eyebrow">Product Roadmap · v0.1</div>
+    <h1>Build <span>DevFund</span></h1>
+    <p class="header-desc">A support platform built specifically for developers — linking backers to shipped software, not just creators. Separate from Qattice, standalone product.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-val">4</div><div class="stat-label">Phases</div></div>
+      <div class="stat"><div class="stat-val">~9 mo</div><div class="stat-label">To v1 Launch</div></div>
+      <div class="stat"><div class="stat-val">3</div><div class="stat-label">MVP Features</div></div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="phase">
+      <div class="phase-dot"><div class="dot dot-blue"></div></div>
+      <div class="phase-body">
+        <div class="phase-header"><div><div class="phase-label">Phase 1 · Months 1–2</div><h2>Foundation &amp; MVP Scope</h2></div><span class="badge badge-blue">Planning</span></div>
+        <div class="card">
+          <p class="phase-desc">Define the product clearly, choose the stack, and build the minimum version that proves the concept. Ship something real people can use by end of month 2.</p>
+          <div class="deliverables">
+            <div class="deliverable"><span class="deliverable-icon">01</span>Define core user flows: dev creates project page, backer discovers and supports it</div>
+            <div class="deliverable"><span class="deliverable-icon">02</span>Choose tech stack (frontend, backend, payments, auth)</div>
+            <div class="deliverable"><span class="deliverable-icon">03</span>Build project page — repo link, demo URL, tech stack tags, tier list</div>
+            <div class="deliverable"><span class="deliverable-icon">04</span>Build dev profile — all projects in one place, supporter count</div>
+            <div class="deliverable"><span class="deliverable-icon">05</span>Stripe integration for one-time and recurring payments</div>
+            <div class="deliverable"><span class="deliverable-icon">06</span>Basic auth (GitHub OAuth recommended — fits the audience)</div>
+          </div>
+          <div class="sub-section"><div class="sub-label">Suggested Stack</div><div class="tag-row"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Postgres</span><span class="tag">Stripe</span><span class="tag">GitHub OAuth</span><span class="tag">Vercel</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot"><div class="dot dot-purple"></div></div>
+      <div class="phase-body">
+        <div class="phase-header"><div><div class="phase-label">Phase 2 · Months 3–4</div><h2>Discovery &amp; Tiers</h2></div><span class="badge badge-purple">Build</span></div>
+        <div class="card">
+          <p class="phase-desc">The discovery feed is what separates DevFund from GitHub Sponsors — it makes finding new tools the core experience, not an afterthought.</p>
+          <div class="deliverables">
+            <div class="deliverable"><span class="deliverable-icon">01</span>Discovery feed — browse projects by category (AI, infra, dev tools, mobile, CLI)</div>
+            <div class="deliverable"><span class="deliverable-icon">02</span>Trending / newest / most supported filters</div>
+            <div class="deliverable"><span class="deliverable-icon">03</span>Tier builder — devs define what each tier unlocks (API access, beta slots, priority issues)</div>
+            <div class="deliverable"><span class="deliverable-icon">04</span>Supporter dashboard — what you back, updates from those projects</div>
+            <div class="deliverable"><span class="deliverable-icon">05</span>Email updates — when a project you support ships something new</div>
+            <div class="deliverable"><span class="deliverable-icon">06</span>Search by tech stack tag</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot"><div class="dot dot-amber"></div></div>
+      <div class="phase-body">
+        <div class="phase-header"><div><div class="phase-label">Phase 3 · Months 5–7</div><h2>Integrations &amp; Trust Layer</h2></div><span class="badge badge-amber">Differentiate</span></div>
+        <div class="card">
+          <p class="phase-desc">The features that make DevFund feel like it was built for developers, not just adapted for them.</p>
+          <div class="deliverables">
+            <div class="deliverable"><span class="deliverable-icon">01</span>GitHub integration — auto-sync repo stars, latest commit, open issues to project page</div>
+            <div class="deliverable"><span class="deliverable-icon">02</span>Automatic backer README badge — supporters show in repo automatically</div>
+            <div class="deliverable"><span class="deliverable-icon">03</span>Changelog feed — devs post updates, backers get notified</div>
+            <div class="deliverable"><span class="deliverable-icon">04</span>Startup vs. indie distinction — different profile types with different defaults</div>
+            <div class="deliverable"><span class="deliverable-icon">05</span>Per-project pages — one dev can run multiple separate projects</div>
+            <div class="deliverable"><span class="deliverable-icon">06</span>Verification badge for shipped, live products (vs. idea-stage)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot"><div class="dot dot-green"></div></div>
+      <div class="phase-body">
+        <div class="phase-header"><div><div class="phase-label">Phase 4 · Months 8–9</div><h2>Public Launch</h2></div><span class="badge badge-green">Ship</span></div>
+        <div class="card">
+          <p class="phase-desc">Soft-launch to the dev community, collect feedback, and get the first 50 real project pages live.</p>
+          <div class="deliverables">
+            <div class="deliverable"><span class="deliverable-icon">01</span>Landing page — clear positioning against GitHub Sponsors and Buy Me a Coffee</div>
+            <div class="deliverable"><span class="deliverable-icon">02</span>Invite-only beta — seed with 20–30 real projects you curate</div>
+            <div class="deliverable"><span class="deliverable-icon">03</span>Product Hunt launch</div>
+            <div class="deliverable"><span class="deliverable-icon">04</span>Hacker News / r/programming outreach</div>
+            <div class="deliverable"><span class="deliverable-icon">05</span>Payout dashboard for devs — earnings, supporter count, tier breakdown</div>
+            <div class="deliverable"><span class="deliverable-icon">06</span>Basic analytics — page views, conversion rate per project</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-title">What makes it different</div>
+  <div class="diff-grid">
+    <div class="diff-card"><div class="diff-icon">🔗</div><div class="diff-title">Product-first, not person-first</div><div class="diff-desc">Support a specific tool or project, not just a creator. Tiers are tied to what the software unlocks.</div></div>
+    <div class="diff-card"><div class="diff-icon">🔍</div><div class="diff-title">Built-in discovery</div><div class="diff-desc">Find new tools by stack, category, or trending. GitHub Sponsors has no discovery layer — it's buried.</div></div>
+    <div class="diff-card"><div class="diff-icon">⚡</div><div class="diff-title">GitHub-native</div><div class="diff-desc">Sync repo stats automatically, show supporters in README, login with GitHub — no friction for the audience.</div></div>
+    <div class="diff-card"><div class="diff-icon">🏗️</div><div class="diff-title">Startups welcome</div><div class="diff-desc">Separate profile types for solo devs and small teams. Runway awareness without the VC framing.</div></div>
+  </div>
+  <div class="mvp-note">
+    <div class="mvp-note-label">MVP Principle</div>
+    <p>Launch with just three things: a project page, support tiers, and a discovery feed. Everything else — GitHub sync, changelog, badges — is v2. A working MVP with 10 real projects is worth more than a feature-complete product with none.</p>
+  </div>
+</div>
+</body>
+</html>
